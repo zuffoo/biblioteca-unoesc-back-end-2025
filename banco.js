@@ -3,7 +3,7 @@ import { Sequelize, DataTypes, where } from "sequelize"; //Usa as chaves pois de
 
 
 //Configuração com o Banco
-const sequelize = new Sequelize('biblioteca25', 'postgres', 'postgres', {
+const sequelize = new Sequelize('biblioteca', 'postgres', 'postgres', {
   host: 'localhost',
   port: 5432,
   dialect: 'postgres',
