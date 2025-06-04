@@ -10,6 +10,7 @@ export default function FormEditora() {
     const [cnpj, setCnpjEditora] = useState('');
     const [endereco, setEnderecoEditora] = useState('');
     
+    
     const voltar = () => {
         navegacao('/listaeditora');
     };
