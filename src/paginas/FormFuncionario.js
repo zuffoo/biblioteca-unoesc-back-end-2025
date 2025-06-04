@@ -3,49 +3,49 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import TituloCadastro from "../componentes/TituloCadastro";
 
-export default function FormUsuario() {
+export default function FormFuncionario() {
     const navegacao = useNavigate();
     const { id } = useParams();
 
     //Declarar um useState para cada campo da tabela
-    const [nome, setNome] = useState('');
+    const [nomefuncionario, setNomeFuncionario] = useState('');
     const [email, setEmail] = useState('');
-    const [telefone, setTelefone] = useState('');
+    const [senha, setSenha] = useState('');
 
 
     const voltar = () => {
-        navegacao('/listausuario');
+        navegacao('/listafuncionario');
     };
 
     const selecionar = async () => {
-        let { data } = await axios.get(`http://localhost:4000/usuario/${id}`);
+        let { data } = await axios.get(`http://localhost:4000/funcionario/${id}`);
         //carregar cada campo na sua respectiva variável
-        setNome(data.nome);
+        setNomeFuncionario(data.nomefuncionario);
         setEmail(data.email);
-        setTelefone(data.telefone);
+        setSenha(data.senha);
 
     }
 
     const alterar = async () => {
         //montar o json do body com todos os campos que precisam ser enviados
         let body = {
-            "nome": nome,
+            "nomefuncionario": nomefuncionario,
             "email": email,
-            "telefone": telefone,
+            "senha": senha,
         };
 
-        await axios.put(`http://localhost:4000/usuario/${id}`, body);
+        await axios.put(`http://localhost:4000/funcionario/${id}`, body);
         voltar();
     }
 
     const inserir = async () => {
         let body = {
-            "nome": nome,
+            "nomefuncionario": nomefuncionario,
             "email": email,
-            "telefone": telefone,
+            "senha": senha,
         };
 
-        await axios.post(`http://localhost:4000/usuario`, body);
+        await axios.post(`http://localhost:4000/funcionario`, body);
         voltar();
     }
 
@@ -59,7 +59,7 @@ export default function FormUsuario() {
     }
 
     const excluir = async () => {
-        await axios.delete(`http://localhost:4000/usuario/${id}`);
+        await axios.delete(`http://localhost:4000/funcionario/${id}`);
         voltar();
     }
 
@@ -71,7 +71,7 @@ export default function FormUsuario() {
 
     return (
         <>
-            <TituloCadastro id={id} titulo="usuario" />
+            <TituloCadastro id={id} titulo="funcionario" />
 
             <form>
                 {id && (
@@ -89,13 +89,13 @@ export default function FormUsuario() {
 
                 <div className="mb-3">
                     <label className="form-label">
-                        Nome do usuário
+                        Nome do funcionário
                     </label>
                     <input
                         type="string"
                         className="form-control"
-                        value={nome}
-                        onChange={(evento) => setNome(evento.target.value)}
+                        value={nomefuncionario}
+                        onChange={(evento) => setNomeFuncionario(evento.target.value)}
                     />
                 </div>
 
@@ -113,13 +113,13 @@ export default function FormUsuario() {
 
                 <div className="mb-3">
                     <label className="form-label">
-                        Telefone
+                        Senha
                     </label>
                     <input
                         type="string"
                         className="form-control"
-                        value={telefone}
-                        onChange={(evento) => setTelefone(evento.target.value)}
+                        value={senha}
+                        onChange={(evento) => setSenha(evento.target.value)}
                     />
                 </div>
 

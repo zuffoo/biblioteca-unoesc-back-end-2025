@@ -2,12 +2,12 @@ import TituloLista from "../componentes/TituloLista";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function ListaUsuario() {
+export default function ListaFuncionario() {
     //Declarando uma variável useState
     const [dados, setDados] = useState([]);
 
     const listar = async () => {
-        let { data } = await axios.get(`http://localhost:4000/usuario`);
+        let { data } = await axios.get(`http://localhost:4000/funcionario`);
         setDados(data);
     }
 
@@ -17,9 +17,9 @@ export default function ListaUsuario() {
 
     return (
         <>
-            <TituloLista titulo="Usuários"
-                descricao="Gerencie aqui os usuários da biblioteca"
-                rota="/cadastrousuario" />
+            <TituloLista titulo="Funcionários"
+                descricao="Gerencie aqui os funcionários da biblioteca"
+                rota="/cadastrofuncionario" />
 
 
             <div className="row">
@@ -31,8 +31,6 @@ export default function ListaUsuario() {
                                 <th scope="col">Código</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">E-mail</th>
-                                <th scope="col">Telefone</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
@@ -40,12 +38,11 @@ export default function ListaUsuario() {
                                 <tr>
                                     <td>
                                         <a className="btn btn-primary"
-                                            href={`/cadastrousuario/${d.idusuario}`}>Alterar</a>
+                                            href={`/cadastrofuncionario/${d.idfuncionario}`}>Alterar</a>
                                     </td>
-                                    <td>{d.idusuario}</td>
+                                    <td>{d.idfuncionario}</td>
                                     <td>{d.nome}</td>
                                     <td>{d.email}</td>
-                                    <td>{d.telefone}</td>
                                 </tr>
                             ))}
                         </tbody>
